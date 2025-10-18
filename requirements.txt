@@ -1,0 +1,5 @@
+textual
+qrcode
+yt-dlp
+PyQt6
+Pillow

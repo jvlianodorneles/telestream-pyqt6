@@ -1,4 +1,4 @@
-# TeleStream TUI
+# TeleStream PyQt6
 
 This is a simple application built in Python, to stream local video files or YouTube streams to a Telegram channel using `ffmpeg`.
 

@@ -10,6 +10,12 @@ This is a simple application built in Python, to stream local video files or You
 -   Buttons to start and stop streaming.
 -   **Favorite Servers Management**: Add, edit, and remove favorite streaming servers (Name, URL, and Stream Key) for quick access.
 
+<p align="center">
+<img width="610" height="458" alt="pyqt61" src="https://github.com/user-attachments/assets/d724fa4a-a83e-45e5-b842-9161b8eaede0" />
+
+<img width="698" height="524" alt="pyqt62" src="https://github.com/user-attachments/assets/b30dd60d-c7ce-451d-8c44-97ad816b420f" />
+</p>
+
 ## Prerequisites
 
 -   **Python 3.7+**

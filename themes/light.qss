@@ -16,6 +16,23 @@ QPushButton:hover {
 QPushButton:pressed {
     background-color: #d0d0d0;
 }
+
+#start_button {
+    background-color: #90EE90; /* LightGreen */
+}
+
+#start_button:hover {
+    background-color: #3CB371; /* MediumSeaGreen */
+}
+
+#stop_button {
+    background-color: #F08080; /* LightCoral */
+}
+
+#stop_button:hover {
+    background-color: #CD5C5C; /* IndianRed */
+}
+
 QLineEdit, QTextEdit, QComboBox {
     background-color: #ffffff;
     border: 1px solid #dcdcdc;

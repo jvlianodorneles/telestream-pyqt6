@@ -38,8 +38,10 @@ class MainWindow(QMainWindow):
         video_path_layout = QHBoxLayout()
         self.video_path_input = QLineEdit()
         self.video_path_input.setPlaceholderText(_("e.g.: /home/user/video.mp4"))
+        self.video_path_input.setToolTip(_("Path to the local video file."))
         video_path_layout.addWidget(self.video_path_input)
         self.browse_button = QPushButton(_("📁 Browse..."))
+        self.browse_button.setToolTip(_("Browse for a video file."))
         video_path_layout.addWidget(self.browse_button)
         self.layout.addLayout(video_path_layout)
 
@@ -47,17 +49,20 @@ class MainWindow(QMainWindow):
         self.layout.addWidget(QLabel(_("Or YouTube URL:")))
         self.youtube_url_input = QLineEdit()
         self.youtube_url_input.setPlaceholderText(_("e.g.: https://www.youtube.com/watch?v=..."))
+        self.youtube_url_input.setToolTip(_("URL of the YouTube video."))
         self.layout.addWidget(self.youtube_url_input)
 
         # Favorite Server
         self.layout.addWidget(QLabel(_("Favorite Server:")))
         self.favorite_server_select = QComboBox()
+        self.favorite_server_select.setToolTip(_("Select a favorite server."))
         self.layout.addWidget(self.favorite_server_select)
 
         # Server URL
         self.layout.addWidget(QLabel(_("Server URL (RTMP/RTMPS):")))
         self.server_url_input = QLineEdit()
         self.server_url_input.setPlaceholderText(_("e.g.: rtmps://dc1-1.rtmp.t.me/s/"))
+        self.server_url_input.setToolTip(_("RTMP/RTMPS server URL."))
         self.layout.addWidget(self.server_url_input)
 
         # Stream Key
@@ -66,22 +71,27 @@ class MainWindow(QMainWindow):
         self.stream_key_input = QLineEdit()
         self.stream_key_input.setPlaceholderText(_("e.g.: 123456:abc-123"))
         self.stream_key_input.setEchoMode(QLineEdit.EchoMode.Password)
+        self.stream_key_input.setToolTip(_("Your Telegram stream key."))
         stream_key_layout.addWidget(self.stream_key_input)
         self.toggle_password_button = QPushButton(_("👁️ Show"))
+        self.toggle_password_button.setToolTip(_("Show/Hide the stream key."))
         stream_key_layout.addWidget(self.toggle_password_button)
         self.layout.addLayout(stream_key_layout)
 
         # RPi Checkbox
         self.rpi_checkbox = QCheckBox(_("RPi"))
+        self.rpi_checkbox.setToolTip(_("Use the h264_v4l2m2m codec for streaming on a Raspberry Pi"))
         self.layout.addWidget(self.rpi_checkbox)
 
         # Action Buttons
         action_buttons_layout = QHBoxLayout()
         self.start_button = QPushButton(_("▶️ Start Stream"))
         self.start_button.setObjectName("start_button")
+        self.start_button.setToolTip(_("Start the stream."))
         action_buttons_layout.addWidget(self.start_button)
         self.stop_button = QPushButton(_("⏹️ Stop Stream"))
         self.stop_button.setObjectName("stop_button")
+        self.stop_button.setToolTip(_("Stop the stream."))
         self.stop_button.setEnabled(False)
         action_buttons_layout.addWidget(self.stop_button)
         self.layout.addLayout(action_buttons_layout)
@@ -89,10 +99,13 @@ class MainWindow(QMainWindow):
         # Utility Buttons
         utility_buttons_layout = QHBoxLayout()
         self.log_button = QPushButton(_("📜 Show Log"))
+        self.log_button.setToolTip(_("Show the log."))
         utility_buttons_layout.addWidget(self.log_button)
         self.about_button = QPushButton(_("ℹ️ About/Donate"))
+        self.about_button.setToolTip(_("About the application."))
         utility_buttons_layout.addWidget(self.about_button)
         self.favorites_button = QPushButton(_("⭐ Manage Favorites"))
+        self.favorites_button.setToolTip(_("Manage favorite servers."))
         utility_buttons_layout.addWidget(self.favorites_button)
         self.layout.addLayout(utility_buttons_layout)
 

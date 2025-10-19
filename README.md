@@ -11,7 +11,7 @@ This is a simple application built in Python, to stream local video files or You
     -   **Favorite Servers Management**: Add, edit, and remove favorite streaming servers (Name, URL, and Stream Key) for quick access.
     -   **Raspberry Pi Support**: A specific option for Raspberry Pi users to use the `h264_v4l2m2m` codec for hardware-accelerated video encoding.
 <p align="center">
-<img width="610" height="458" alt="pyqt61" src="https://github.com/user-attachments/assets/d724fa4a-a83e-45e5-b842-9161b8eaede0" />
+<img width="638" height="479" alt="pyqt61" src="https://github.com/user-attachments/assets/fdad472c-5e76-481f-99ef-f8a1201405db" />
 
 <img width="698" height="524" alt="pyqt62" src="https://github.com/user-attachments/assets/b30dd60d-c7ce-451d-8c44-97ad816b420f" />
 </p>

@@ -14,7 +14,7 @@ class Streamer(QObject):
         super().__init__()
         self.streaming_process = None
 
-    def start_streaming(self, stream_source: str, server_url: str, stream_key: str):
+    def start_streaming(self, stream_source: str, server_url: str, stream_key: str, is_rpi: bool = False):
         self.log_message.emit(_("Starting stream..."))
 
         input_source = stream_source
@@ -37,6 +37,8 @@ class Streamer(QObject):
 
         full_rtmp_url = f"{server_url}/{stream_key}"
         
+        vcodec = "h264_v4l2m2m" if is_rpi else "libx264"
+        
         command = [
             "ffmpeg",
         ]
@@ -46,7 +48,7 @@ class Streamer(QObject):
 
         command.extend([
             "-i", input_source,
-            "-vcodec", "libx264",
+            "-vcodec", vcodec,
             "-r", "30",
             "-g", "60",
             "-b:v", "10M",

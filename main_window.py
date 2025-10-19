@@ -3,7 +3,7 @@ import os
 from PyQt6.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, 
     QPushButton, QLabel, QLineEdit, QComboBox, QTextEdit, QDialog, 
-    QTableWidget, QFileDialog, QMessageBox
+    QTableWidget, QFileDialog, QMessageBox, QCheckBox
 )
 from PyQt6.QtCore import QThread, pyqtSignal, Qt
 from PyQt6.QtGui import QKeyEvent
@@ -70,6 +70,10 @@ class MainWindow(QMainWindow):
         self.toggle_password_button = QPushButton(_("👁️ Show"))
         stream_key_layout.addWidget(self.toggle_password_button)
         self.layout.addLayout(stream_key_layout)
+
+        # RPi Checkbox
+        self.rpi_checkbox = QCheckBox(_("RPi"))
+        self.layout.addWidget(self.rpi_checkbox)
 
         # Action Buttons
         action_buttons_layout = QHBoxLayout()
@@ -216,6 +220,7 @@ class MainWindow(QMainWindow):
         youtube_url = self.youtube_url_input.text()
         server_url = self.server_url_input.text()
         stream_key = self.stream_key_input.text()
+        is_rpi = self.rpi_checkbox.isChecked()
 
         if not (video_path or youtube_url) or not server_url or not stream_key:
             QMessageBox.critical(self, _("Error"), _("Server URL and stream key are required, plus a video path or YouTube URL."))
@@ -237,7 +242,7 @@ class MainWindow(QMainWindow):
         # Run streaming in a separate thread
         self.stream_thread = QThread()
         self.streamer.moveToThread(self.stream_thread)
-        self.stream_thread.started.connect(lambda: self.streamer.start_streaming(stream_source, server_url, stream_key))
+        self.stream_thread.started.connect(lambda: self.streamer.start_streaming(stream_source, server_url, stream_key, is_rpi))
         self.stream_thread.start()
 
     def stop_streaming(self):

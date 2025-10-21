@@ -24,9 +24,9 @@ wheels/
 *.egg
 
 # PyInstaller
+*.spec
 #  Usually these files are written by a parent folder of this `.gitignore` file.
 #  If you do use PyInstaller, uncomment the following three lines:
-#*.spec
 #*.pyzw
 #*.pyz
 
@@ -109,4 +109,4 @@ dmypy.json
 
 # Custom ignores
 config.json
-*.spec
+/tmp/

@@ -9,6 +9,7 @@ QPushButton {
     border: 1px solid #dcdcdc;
     padding: 5px;
     border-radius: 3px;
+    spacing: 10px;
 }
 QPushButton:hover {
     background-color: #e0e0e0;
@@ -19,6 +20,8 @@ QPushButton:pressed {
 
 #start_button {
     background-color: #90EE90; /* LightGreen */
+    font-weight: bold;
+    padding: 8px;
 }
 
 #start_button:hover {
@@ -27,15 +30,30 @@ QPushButton:pressed {
 
 #stop_button {
     background-color: #F08080; /* LightCoral */
+    font-weight: bold;
+    padding: 8px;
 }
 
 #stop_button:hover {
     background-color: #CD5C5C; /* IndianRed */
 }
 
+
 QLineEdit, QTextEdit, QComboBox {
     background-color: #ffffff;
     border: 1px solid #dcdcdc;
     padding: 5px;
     border-radius: 3px;
+}
+
+QGroupBox {
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top center;
+    padding: 0 10px;
 }

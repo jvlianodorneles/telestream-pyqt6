@@ -1,15 +1,17 @@
 # TeleStream PyQt6
 
-This is a simple application built in Python, to stream local video files or YouTube streams to a Telegram channel using `ffmpeg`.
+A simple application built in Python to stream local video files or YouTube videos to an RTMP server, such as Telegram, using `ffmpeg`.
 
 ## Features
 
--   Stream a local video file or a YouTube video.
--   Saves the last used favorite for convenience.
--   Displays basic status and error logs.
-    -   Buttons to start and stop streaming.
-    -   **Favorite Servers Management**: Add, edit, and remove favorite streaming servers (Name, URL, and Stream Key) for quick access.
-    -   **Raspberry Pi Support**: A specific option for Raspberry Pi users to use the `h264_v4l2m2m` codec for hardware-accelerated video encoding.
+-   **Video Sources**: Stream a local video file or a YouTube video.
+-   **Favorite Servers**: Save, edit, and remove favorite streaming servers (Name, URL, and Stream Key) for quick access.
+-   **Themeable Interface**: Switch between a light and dark theme to suit your preference.
+-   **Loop Control**: Choose whether to play a video once or loop it infinitely. This works for both local files and YouTube streams.
+-   **Quality Presets**: Select from various resolution and bitrate presets (1080p, 720p, 480p, or source quality) to manage your bandwidth and stream quality.
+-   **Log Management**: View application and `ffmpeg` logs in a dedicated window, with options to clear the log or save it to a timestamped file.
+-   **Hardware Acceleration (RPi)**: Includes a specific option for Raspberry Pi users to use the `h264_v4l2m2m` codec for hardware-accelerated video encoding.
+
 <p align="center">
 <img width="638" height="479" alt="pyqt61" src="https://github.com/user-attachments/assets/fdad472c-5e76-481f-99ef-f8a1201405db" />
 
@@ -50,20 +52,27 @@ This is a simple application built in Python, to stream local video files or You
 
 ## How to Use
 
-1.  Run the application:
-    ```bash
-    python3 app.py
-    ```
-2.  **Video Source**: You have two options for the video source, which are mutually exclusive:
-    *   **Video Path**: Enter the absolute path to the local video file you want to stream (e.g., `/home/user/my_video.mp4`).
-    *   **Or YouTube URL**: Paste the URL of the YouTube video you want to stream (e.g., `https://www.youtube.com/watch?v=...`).
-3.  **Favorite Servers Management**:
-    *   Click the "Manage Favorites" button to open the management screen.
-    *   On this screen, you can add new favorite servers by providing a Name, the Server URL (e.g., `rtmps://dc1-1.rtmp.t.me/s/`), and the Stream Key.
-    *   Select a favorite from the table to edit its details or remove it.
-    *   Changes are automatically saved to `config.json`.
-4.  **Server Selection**: On the main screen, use the "Favorite Server" dropdown to select one of your saved servers. The Server URL and Stream Key will be automatically filled.
-5.  **Server URL**: This field will be automatically filled when selecting a favorite. You can also edit it manually if you are not using a favorite.
-6.  **Stream Key**: This field will be automatically filled when selecting a favorite. You can also edit it manually if you are not using a favorite. The field hides the key for privacy.
-7.  **Start Stream**: Press the "Start Stream" button to begin streaming.
-8.  **Stop Stream**: Press the "Stop Stream" button to end the `ffmpeg` process. You can also exit the application with `Esc` and confirming the exit.
+1.  **Video Source**:
+    *   **Video Path**: Enter the absolute path to a local video file.
+    *   **Or YouTube URL**: Paste the URL of a YouTube video.
+
+2.  **Server Details**:
+    *   **Favorite Server**: Select a pre-saved server from this dropdown to auto-fill the URL and Key.
+    *   **Server URL**: The RTMP/RTMPS URL of the streaming server.
+    *   **Stream Key**: Your private stream key. Click the eye icon to show/hide it.
+
+3.  **Options**:
+    *   **RPi Mode**: Check this to use the `h264_v4l2m2m` codec, recommended for hardware acceleration on Raspberry Pi.
+    *   **Loop Mode**: Choose "Loop Infinitely" to repeat the video when it ends, or "Play Once" to stream it a single time.
+    *   **Quality Preset**: Select a resolution and bitrate for your stream. "Source Quality" will not resize or re-encode the video bitrate.
+
+4.  **Streaming**:
+    *   Press **Start Stream** to begin.
+    *   Press **Stop Stream** to end the transmission.
+
+5.  **Utilities**:
+    *   **Show Log**: Opens a window to view detailed logs from the application and `ffmpeg`. You can also clear the log from this window.
+    *   **Save Log**: Saves the current log session to a timestamped `.txt` file in the application's root directory.
+    *   **Manage Favorites**: Opens a dialog to add, edit, or remove your saved server configurations.
+    *   **About/Donate**: Shows information about the application and donation options.
+    *   **Toggle Theme**: Switches the application between light and dark themes.

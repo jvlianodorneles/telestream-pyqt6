@@ -1,10 +1,8 @@
 
 import json
 from pathlib import Path
-import gettext
 
 CONFIG_FILE = Path("config.json")
-LOCALE_DIR = Path(__file__).parent / "locale"
 
 DEFAULT_CONFIG = {
     "favorites": [],
@@ -28,10 +26,3 @@ def save_config(config: dict) -> None:
     """Salva a configuração no arquivo config.json."""
     with open(CONFIG_FILE, "w") as f:
         json.dump(config, f, indent=4)
-
-def setup_gettext():
-    gettext.bindtextdomain("messages", LOCALE_DIR)
-    gettext.textdomain("messages")
-    return gettext.gettext
-
-_ = setup_gettext()

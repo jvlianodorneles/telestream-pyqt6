@@ -13,9 +13,9 @@ A simple application built in Python to stream local video files or YouTube vide
 -   **Hardware Acceleration (RPi)**: Includes a specific option for Raspberry Pi users to use the `h264_v4l2m2m` codec for hardware-accelerated video encoding.
 
 <p align="center">
-<img width="638" height="479" alt="pyqt61" src="https://github.com/user-attachments/assets/fdad472c-5e76-481f-99ef-f8a1201405db" />
+<img width="933" height="700" alt="pyqt61" src="https://github.com/user-attachments/assets/dc136e17-9b51-42c5-98ac-3549944186e0" />
 
-<img width="698" height="524" alt="pyqt62" src="https://github.com/user-attachments/assets/b30dd60d-c7ce-451d-8c44-97ad816b420f" />
+<img width="836" height="627" alt="pyqt62" src="https://github.com/user-attachments/assets/fac15e40-e52c-42e4-8fff-89842c7fac8d" />
 </p>
 
 ## Prerequisites

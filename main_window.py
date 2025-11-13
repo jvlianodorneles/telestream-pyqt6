@@ -199,7 +199,6 @@ class MainWindow(QMainWindow):
         }
 
         # --- Connect signals ---
-        self.live_story_checkbox.toggled.connect(self.live_story_toggled)
         self.browse_button.clicked.connect(self.browse_file)
         self.toggle_password_button.clicked.connect(self.toggle_password_visibility)
         self.video_path_input.textChanged.connect(self.video_path_changed)
@@ -214,13 +213,6 @@ class MainWindow(QMainWindow):
         self.theme_button.clicked.connect(self.toggle_theme)
 
         self.setMinimumWidth(600)
-
-    def live_story_toggled(self, checked):
-        self.quality_preset_select.setEnabled(not checked)
-        if checked:
-            self.quality_preset_select.setToolTip("Quality is automatically set for Live Story mode.")
-        else:
-            self.quality_preset_select.setToolTip("Choose the resolution and bitrate for the stream.")
 
     def get_icon_path(self, icon_name):
         if getattr(sys, 'frozen', False):

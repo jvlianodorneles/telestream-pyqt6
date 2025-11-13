@@ -48,18 +48,30 @@ class Streamer(QObject):
 
         if is_live_story:
             # 9:16 Live Story filter
+            quality_params_story = {
+                "1080p (5 Mbps)": {"res": "1080x1920", "bitrate": "5M"},
+                "720p (3 Mbps)": {"res": "720x1280", "bitrate": "3M"},
+                "480p (1.5 Mbps)": {"res": "480x854", "bitrate": "1.5M"},
+            }
+            
+            # Default to 1080p if "Source Quality" or other is selected
+            preset = quality_params_story.get(quality_preset, quality_params_story["1080p (5 Mbps)"])
+            res = preset["res"]
+            width, height = map(int, res.split('x'))
+            bitrate = preset["bitrate"]
+            
             video_filter = (
-                "[0:v]split=2[original][bg]; "
-                "[bg]scale=w=1080:h=1920:force_original_aspect_ratio=increase,crop=1080:1920,boxblur=50[blurred_bg]; "
-                "[original]scale=w=1080:h=1920:force_original_aspect_ratio=decrease[fg]; "
-                "[blurred_bg][fg]overlay=(W-w)/2:(H-h)/2"
+                f"[0:v]split=2[original][bg]; "
+                f"[bg]scale={width}:{height}:force_original_aspect_ratio=increase,crop={width}:{height},boxblur=20[blurred_bg]; "
+                f"[original]scale={width}:{height}:force_original_aspect_ratio=decrease[fg]; "
+                f"[blurred_bg][fg]overlay=(W-w)/2:(H-h)/2"
             )
             command.extend([
                 "-vf", video_filter,
                 "-vcodec", vcodec,
                 "-r", "30",
                 "-g", "60",
-                "-b:v", "5M", # High bitrate for 1080p vertical
+                "-b:v", bitrate,
                 "-preset", "veryfast",
             ])
         else:

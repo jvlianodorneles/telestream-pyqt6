@@ -6,7 +6,8 @@ CONFIG_FILE = Path("config.json")
 
 DEFAULT_CONFIG = {
     "favorites": [],
-    "theme": "dark"
+    "theme": "dark",
+    "live_story": False
 }
 
 def load_config() -> dict:

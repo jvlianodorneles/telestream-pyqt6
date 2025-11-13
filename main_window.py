@@ -34,6 +34,7 @@ class MainWindow(QMainWindow):
 
         # --- UI Setup ---
         self._init_ui()
+        self.live_story_checkbox.setChecked(self.config.get("live_story", False))
         self.apply_theme() # Apply theme and icons
 
     def _init_ui(self):
@@ -111,6 +112,13 @@ class MainWindow(QMainWindow):
         rpi_layout.addWidget(self.rpi_checkbox)
         rpi_layout.addStretch()
         options_layout.addLayout(rpi_layout)
+
+        live_story_layout = QHBoxLayout()
+        self.live_story_checkbox = QCheckBox("Live Story (9:16)")
+        self.live_story_checkbox.setToolTip("Create a 9:16 output with a blurred background for vertical streaming.")
+        live_story_layout.addWidget(self.live_story_checkbox)
+        live_story_layout.addStretch()
+        options_layout.addLayout(live_story_layout)
 
         loop_layout = QHBoxLayout()
         loop_layout.addWidget(QLabel("Loop Mode:"))
@@ -191,6 +199,7 @@ class MainWindow(QMainWindow):
         }
 
         # --- Connect signals ---
+        self.live_story_checkbox.toggled.connect(self.live_story_toggled)
         self.browse_button.clicked.connect(self.browse_file)
         self.toggle_password_button.clicked.connect(self.toggle_password_visibility)
         self.video_path_input.textChanged.connect(self.video_path_changed)
@@ -205,6 +214,13 @@ class MainWindow(QMainWindow):
         self.theme_button.clicked.connect(self.toggle_theme)
 
         self.setMinimumWidth(600)
+
+    def live_story_toggled(self, checked):
+        self.quality_preset_select.setEnabled(not checked)
+        if checked:
+            self.quality_preset_select.setToolTip("Quality is automatically set for Live Story mode.")
+        else:
+            self.quality_preset_select.setToolTip("Choose the resolution and bitrate for the stream.")
 
     def get_icon_path(self, icon_name):
         if getattr(sys, 'frozen', False):
@@ -366,11 +382,15 @@ class MainWindow(QMainWindow):
             is_rpi = self.rpi_checkbox.isChecked()
             loop_mode = self.loop_mode_select.currentText()
             quality_preset = self.quality_preset_select.currentText()
+            is_live_story = self.live_story_checkbox.isChecked()
+
+            self.config["live_story"] = is_live_story
+            save_config(self.config)
 
             if not (video_path or youtube_url) or not server_url or not stream_key:
                 QMessageBox.critical(self, "Error", "Server URL and stream key are required, plus a video path or YouTube URL.")
                 return
-
+            
             if video_path and not os.path.exists(video_path):
                 QMessageBox.critical(self, "Error", f"File not found: {video_path}")
                 return
@@ -383,7 +403,8 @@ class MainWindow(QMainWindow):
                 "stream_key": stream_key,
                 "is_rpi": is_rpi,
                 "loop_mode": loop_mode,
-                "quality_preset": quality_preset
+                "quality_preset": quality_preset,
+                "is_live_story": is_live_story
             }
 
             selected_favorite = self.favorite_server_select.currentData()
@@ -409,7 +430,8 @@ class MainWindow(QMainWindow):
         self.streamer.moveToThread(self.stream_thread)
         self.stream_thread.started.connect(lambda: self.streamer.start_streaming(
             info["source"], info["server_url"], info["stream_key"], 
-            info["is_rpi"], info["loop_mode"], info["quality_preset"]
+            info["is_rpi"], info["loop_mode"], info["quality_preset"],
+            info["is_live_story"]
         ))
         
         self.stream_thread.finished.connect(self.on_thread_finished)

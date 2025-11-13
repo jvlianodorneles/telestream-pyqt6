@@ -11,7 +11,7 @@ class Streamer(QObject):
         super().__init__()
         self.streaming_process = None
 
-    def start_streaming(self, stream_source: str, server_url: str, stream_key: str, is_rpi: bool = False, loop_mode: str = "Loop Infinitely", quality_preset: str = "Source Quality"):
+    def start_streaming(self, stream_source: str, server_url: str, stream_key: str, is_rpi: bool = False, loop_mode: str = "Loop Infinitely", quality_preset: str = "Source Quality", is_live_story: bool = False):
         self.log_message.emit("Starting stream...")
 
         input_source = stream_source
@@ -44,21 +44,40 @@ class Streamer(QObject):
         if is_local_file and loop_mode == "Loop Infinitely":
             command.extend(["-stream_loop", "-1"])
 
-        command.extend([
-            "-i", input_source,
-            "-vcodec", vcodec,
-            "-r", "30",
-            "-g", "60",
-        ])
+        command.extend(["-i", input_source])
 
-        quality_params = {
-            "1080p (5 Mbps)": ["-s", "1920x1080", "-b:v", "5M"],
-            "720p (3 Mbps)": ["-s", "1280x720", "-b:v", "3M"],
-            "480p (1.5 Mbps)": ["-s", "854x480", "-b:v", "1.5M"],
-        }
+        if is_live_story:
+            # 9:16 Live Story filter
+            video_filter = (
+                "[0:v]split=2[original][bg]; "
+                "[bg]scale=w=1080:h=1920:force_original_aspect_ratio=increase,crop=1080:1920,boxblur=50[blurred_bg]; "
+                "[original]scale=w=1080:h=1920:force_original_aspect_ratio=decrease[fg]; "
+                "[blurred_bg][fg]overlay=(W-w)/2:(H-h)/2"
+            )
+            command.extend([
+                "-vf", video_filter,
+                "-vcodec", vcodec,
+                "-r", "30",
+                "-g", "60",
+                "-b:v", "5M", # High bitrate for 1080p vertical
+                "-preset", "veryfast",
+            ])
+        else:
+            # Standard quality presets
+            command.extend([
+                "-vcodec", vcodec,
+                "-r", "30",
+                "-g", "60",
+            ])
 
-        if quality_preset in quality_params:
-            command.extend(quality_params[quality_preset])
+            quality_params = {
+                "1080p (5 Mbps)": ["-s", "1920x1080", "-b:v", "5M"],
+                "720p (3 Mbps)": ["-s", "1280x720", "-b:v", "3M"],
+                "480p (1.5 Mbps)": ["-s", "854x480", "-b:v", "1.5M"],
+            }
+
+            if quality_preset in quality_params:
+                command.extend(quality_params[quality_preset])
 
         command.extend([
             "-acodec", "aac",

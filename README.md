@@ -9,6 +9,7 @@ A simple application built in Python to stream local video files or YouTube vide
 -   **Themeable Interface**: Switch between a light and dark theme to suit your preference.
 -   **Loop Control**: Choose whether to play a video once or loop it infinitely. This works for both local files and YouTube streams.
 -   **Quality Presets**: Select from various resolution and bitrate presets (1080p, 720p, 480p, or source quality) to manage your bandwidth and stream quality.
+-   **Live Story Mode**: Automatically formats your video into a 9:16 vertical aspect ratio with a blurred background, perfect for mobile-first platforms. This mode now respects the selected quality presets for resolution and bitrate.
 -   **Log Management**: View application and `ffmpeg` logs in a dedicated window, with options to clear the log or save it to a timestamped file.
 -   **Hardware Acceleration (RPi)**: Includes a specific option for Raspberry Pi users to use the `h264_v4l2m2m` codec for hardware-accelerated video encoding.
 
@@ -63,8 +64,9 @@ A simple application built in Python to stream local video files or YouTube vide
 
 3.  **Options**:
     *   **RPi Mode**: Check this to use the `h264_v4l2m2m` codec, recommended for hardware acceleration on Raspberry Pi.
-    *   **Loop Mode**: Choose "Loop Infinitely" to repeat the video when it ends, or "Play Once" to stream it a single time.
-    *   **Quality Preset**: Select a resolution and bitrate for your stream. "Source Quality" will not resize or re-encode the video bitrate.
+-   **Loop Mode**: Choose "Loop Infinitely" to repeat the video when it ends, or "Play Once" to stream it a single time.
+    -   **Live Story**: Check this to enable the 9:16 vertical video format.
+    -   **Quality Preset**: Select a resolution and bitrate for your stream. "Source Quality" will not resize or re-encode the video bitrate.
 
 4.  **Streaming**:
     *   Press **Start Stream** to begin.

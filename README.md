@@ -23,6 +23,7 @@ A simple application built in Python to stream local video files or YouTube vide
 
 -   **Python 3.7+**
 -   **ffmpeg**: You need to have `ffmpeg` installed and accessible in your system's `PATH`.
+    -   For Windows (using Winget): `winget install ffmpeg`
     -   For Debian/Ubuntu: `sudo apt update && sudo apt install ffmpeg`
     -   For Arch Linux: `sudo pacman -S ffmpeg`
     -   For macOS (using Homebrew): `brew install ffmpeg`
@@ -41,6 +42,7 @@ A simple application built in Python to stream local video files or YouTube vide
 4.  Activate the virtual environment:
     ```bash
     source venv/bin/activate
+    # If you're using Windows, use the command `.\venv\Scripts\activate` (without the word `source`) to activate the virtual environment.
     ```
 5.  Install the necessary Python dependencies:
     ```bash
@@ -49,6 +51,7 @@ A simple application built in Python to stream local video files or YouTube vide
 6.  Run the application:
     ```bash
     python3 app.py
+    # On Windows, you might need to explicitly use the Python executable from the virtual environment: `.\venv\Scripts\python.exe app.py`
     ```
 
 ## How to Use

@@ -23,6 +23,7 @@ Uma aplicação simples construída em Python para transmitir arquivos de vídeo
 
 -   **Python 3.7+**
 -   **ffmpeg**: Você precisa ter o `ffmpeg` instalado e acessível no `PATH` do seu sistema.
+    -   Para Windows (usando Winget): `winget install ffmpeg`
     -   Para Debian/Ubuntu: `sudo apt update && sudo apt install ffmpeg`
     -   Para Arch Linux: `sudo pacman -S ffmpeg`
     -   Para macOS (usando Homebrew): `brew install ffmpeg`
@@ -41,6 +42,7 @@ Uma aplicação simples construída em Python para transmitir arquivos de vídeo
 4.  Ative o ambiente virtual:
     ```bash
     source venv/bin/activate
+    # Se você estiver usando Windows, use o comando `.\venv\Scripts\activate` (sem a palavra `source`) para ativar o ambiente virtual.
     ```
 5.  Instale as dependências Python necessárias:
     ```bash
@@ -49,6 +51,7 @@ Uma aplicação simples construída em Python para transmitir arquivos de vídeo
 6.  Execute a aplicação:
     ```bash
     python3 app.py
+    # No Windows, pode ser necessário usar explicitamente o executável Python do ambiente virtual: `.\venv\Scripts\python.exe app.py`
     ```
 
 ## Como Usar

@@ -13,11 +13,11 @@ A simple application built in Python to stream local video files or YouTube vide
 -   **Log Management**: View application and `ffmpeg` logs in a dedicated window, with options to clear the log or save it to a timestamped file.
 -   **Hardware Acceleration (RPi)**: Includes a specific option for Raspberry Pi users to use the `h264_v4l2m2m` codec for hardware-accelerated video encoding.
 
-<p align="center">
-<img width="933" height="700" alt="pyqt61" src="https://github.com/user-attachments/assets/dc136e17-9b51-42c5-98ac-3549944186e0" />
+<img width="966" height="725" alt="pyqt61" src="https://github.com/user-attachments/assets/bad4b07d-725d-4745-8906-011f4dd003f3" />
 
-<img width="836" height="627" alt="pyqt62" src="https://github.com/user-attachments/assets/fac15e40-e52c-42e4-8fff-89842c7fac8d" />
-</p>
+<img width="836" height="627" alt="pyqt62" src="https://github.com/user-attachments/assets/5b9f531f-4d66-47ee-8980-58f650f64b4b" />
+
+<img width="857" height="642" alt="pyqt63" src="https://github.com/user-attachments/assets/399f4ca5-bf16-4c56-a81e-a4b9b42adf08" />
 
 ## Prerequisites
 
